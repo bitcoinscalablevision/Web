@@ -1,3 +1,34 @@
+// Dynamic title effect with fireworks
+let titleText = "🎆 BSV-BITCOIN SCALABLE VISION 🎆";
+let position = 0;
+let direction = 1;
+let speed = 200;
+
+function scrollTitle() {
+    // Create scrolling effect with fireworks
+    let displayText = titleText.substring(position) + " " + titleText.substring(0, position);
+    document.title = displayText;
+    
+    // Add random fireworks emoji
+    if (Math.random() < 0.3) {
+        const fireworks = ['🎆', '✨', '🎇', '💥', '🔥'];
+        const randomFirework = fireworks[Math.floor(Math.random() * fireworks.length)];
+        document.title = randomFirework + " " + displayText + " " + randomFirework;
+    }
+    
+    // Change direction and speed randomly
+    if (Math.random() < 0.1) {
+        direction = -direction;
+        speed = Math.max(100, Math.min(400, speed + (Math.random() - 0.5) * 100));
+    }
+    
+    position = (position + direction + titleText.length) % titleText.length;
+    setTimeout(scrollTitle, speed);
+}
+
+// Start the scrolling effect
+scrollTitle();
+
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
