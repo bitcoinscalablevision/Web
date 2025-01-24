@@ -37,11 +37,28 @@ header {
     z-index: 1000;
 }
 
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .logo {
     display: flex;
     align-items: center;
     gap: 1rem;
     margin-right: 2rem;
+    transition: opacity 0.3s ease;
+}
+
+.logo:hover {
+    animation: flash 0.5s ease-in-out;
+}
+
+@keyframes flash {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
 }
 
 nav {
@@ -96,10 +113,27 @@ nav a:hover {
 
 /* Hero Section */
 #hero {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background: url('images/Satoshi Nakamoto statue.jpg') center/cover no-repeat;
     color: var(--white);
     padding: 6rem 0;
     text-align: center;
+    position: relative;
+}
+
+#hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+#hero .container {
+    position: relative;
+    z-index: 2;
 }
 
 #hero h2 {
@@ -187,8 +221,8 @@ nav a:hover {
 footer {
     background-color: var(--text-color);
     color: var(--white);
-    padding: 3rem 0;
-    margin-top: 4rem;
+    padding: 2rem 0;
+    margin-top: 2rem;
 }
 
 .footer-content {
@@ -241,64 +275,6 @@ footer {
     transform: translateY(-2px);
 }
 
-/* Technology Section */
-#technology {
-    padding: 4rem 0;
-    background-color: var(--white);
-}
-
-.tech-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.tech-card {
-    background: var(--background-color);
-    padding: 2rem;
-    border-radius: 8px;
-    border: 1px solid rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
-}
-
-.tech-card:hover {
-    transform: translateY(-5px);
-}
-
-.tech-card h3 {
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-}
-
-/* Use Cases Section */
-#use-cases {
-    padding: 4rem 0;
-}
-
-.use-case-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.use-case-card {
-    background: var(--white);
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
-}
-
-.use-case-card:hover {
-    transform: translateY(-5px);
-}
-
-.use-case-card h3 {
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-}
 
 /* Roadmap Section */
 #roadmap {
@@ -352,8 +328,12 @@ footer {
     header .container {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 2rem;
+    }
+
+    .logo {
+        margin-right: auto;
     }
 
     nav ul {
